@@ -1,5 +1,21 @@
 var computerMove, playerMove, randomNumber;
 
+playerInput = prompt("Choose your turn! 1: stone, 2: paper, 3: scissors.");
+
+console.log("Answer is: " + playerInput);
+
+if (playerInput == "1") {
+  playerMove = "stone";
+} else if (playerInput == "2") {
+  playerMove = "paper";
+} else if (playerInput == "3") {
+  playerMove = "scissors";
+} else {
+  playerMove = "unknown input";
+}
+
+printMessage("Your move: " + playerMove);
+
 randomNumber = getRndInteger(1, 3);
 
 if (randomNumber == "1") {
@@ -10,8 +26,7 @@ if (randomNumber == "1") {
   computerMove = "scissors";
 }
 
-printMessage("I played " + computerMove + ". If your move is " + playerMove +" then you won!");
-
+printMessage("Computer move: " + computerMove);
 
 
 // var randomNumber, anotherNumber;
