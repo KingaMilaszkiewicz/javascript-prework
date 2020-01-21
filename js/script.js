@@ -1,4 +1,6 @@
-var computerMove, playerMove, randomNumber, buttonRock, buttonPaper, buttonScissors, argMoveId, argPlayerMove, argComputerMove, argButtonName;
+var computerWins = 0, playerWins = 0, computerPoints = 0, playerPoints = 0,
+computerMove, playerMove, randomNumber, buttonReset, buttonRock, buttonPaper,
+buttonScissors, argMoveId, argPlayerMove, argComputerMove, argButtonName;
 
  //////////////////////////////////////////////////////////////////////////////
 
@@ -11,17 +13,47 @@ buttonPaper.addEventListener("click", function(){ buttonClicked("2");});
 buttonScissors = document.getElementById("button-scissors");
 buttonScissors.addEventListener("click", function(){ buttonClicked("3");});
 
+buttonReset = document.getElementById("button-reset");
+buttonReset.addEventListener("click", function(){ buttonClicked("reset");});
+
+showScore(playerWins + " : " + computerWins);
+showSmallScore(playerPoints + " : " + computerPoints);
+
+function resetScore(){
+	computerPoints = 0;
+	playerPoints = 0;
+}
+
 function buttonClicked(argButtonName) {
-	console.log(argButtonName + " has been clicked.");
+	if (argButtonName == "reset"){
+		clearMessages();
+		resetScore();
+		showSmallScore(playerPoints + " : " + computerPoints);
+	} else {
+		clearMessages();
+		console.log(argButtonName + " has been clicked.");
 
-	playerMove = getMoveName(argButtonName);
-	console.log("Player move is " + playerMove);
-	randomNumber = getRndInteger(1, 3);
-	console.log("Random number is " + randomNumber);
-	computerMove = getMoveName(randomNumber);
-	console.log("Computer move is " + computerMove);
+		playerMove = getMoveName(argButtonName);
+		console.log("Player move is " + playerMove);
+		randomNumber = getRndInteger(1, 3);
+		console.log("Random number is " + randomNumber);
+		computerMove = getMoveName(randomNumber);
+		console.log("Computer move is " + computerMove);
 
-	displayResult(playerMove, computerMove);
+		displayResult(playerMove, computerMove);
+
+		if(computerPoints == 3){
+			++computerWins;
+			showScore(playerWins + " : " + computerWins);
+			resetScore();
+			printMessage("You lost! Click any button to continue.");
+		} else if (playerPoints == 3) {
+			++playerWins;
+			showScore(playerWins + " : " + computerWins);
+			resetScore();
+			printMessage("You won! Click any button to continue.");
+		}
+	}
 }
 
  //////////////////////////////////////////////////////////////////////////////
@@ -35,7 +67,7 @@ function getMoveName(argMoveId) {
 	} else if (argMoveId == 3) {
 		return "scissors";
 	} else {
-		printMessage("I don't know a move with id " + argMoveId + ". I am assuming you meant 'stone'.");
+		printMessage("I don't know a move with id " + argMoveId + ". I am assuming you meant 'rock'.");
 		return "rock";
 	}
 }
@@ -43,11 +75,16 @@ function getMoveName(argMoveId) {
 function displayResult(argPlayerMove, argComputerMove) {
 	console.log("Called getMoveName function with arguments: " + argPlayerMove + ", " + argComputerMove);
 	if (argPlayerMove == argComputerMove) {
+		showSmallScore(playerPoints + " : " + computerPoints);
 		printMessage("Draw!")
 	} else if (argPlayerMove == "rock" && argComputerMove == "scissors" || argPlayerMove == "paper" && argComputerMove == "rock" || argPlayerMove == "scissors" && argComputerMove == "paper") {
-		printMessage("You won!");
+		++playerPoints;
+		showSmallScore(playerPoints + " : " + computerPoints);
+		printMessage("You won this turn!");
 	} else {
-		printMessage("You lost :(");
+		++computerPoints;
+		showSmallScore(playerPoints + " : " + computerPoints);
+		printMessage("You lost this turn :(");
 	}
 	printMessage("I played " + argComputerMove + " and you played " + argPlayerMove + ".");
 }

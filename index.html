@@ -3,14 +3,30 @@
   <head>
     <meta charset="UTF-8">
     <title>Rock, paper, scissors</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Alata|Bangers&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
+    <section class="welcome">
+      <div>
+        <h2>Welcome to</h2>
+        <h1>rock, paper, scissors</h1>
+        <h4>Instructions:</h4>
+        <ol>
+          <li>Click any button to declare your choice.</li>
+          <li>Be first to score 3 points to win the game!</li>
+        </ol>
+        <h3 class="score" id="score"></h3>
+        <h4 class="score" id="smallScore"></h4>
+      </div>
+    </section>
     <div class="container">
       <div id="buttons">
         <a class="btn" href="#" id="button-rock">Rock</a>
         <a class="btn" href="#" id="button-paper">Paper</a>
-        <a class="btn" href="#" id="button-scissors">Scissors</a>
+        <a class="btn" href="#" id="button-scissors">Scissors</a><br>
+        <a class="btn" href="#" id="button-reset">Reset</a>
       </div>
       <div id="messages">
 

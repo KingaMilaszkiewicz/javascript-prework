@@ -4,6 +4,16 @@ function printMessage(msg){
 	document.getElementById('messages').appendChild(div);
 }
 
+function showScore(score){
+	clearMessages();
+	document.getElementById('score').innerHTML = score;
+}
+
+function showSmallScore(score){
+	clearMessages();
+	document.getElementById('smallScore').innerHTML = score;
+}
+
 function clearMessages(){
 	document.getElementById('messages').innerHTML = '';
 }
