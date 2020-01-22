@@ -1,19 +1,18 @@
-var computerWins = 0, playerWins = 0, computerPoints = 0, playerPoints = 0,
-computerMove, playerMove, randomNumber, buttonReset, buttonRock, buttonPaper,
-buttonScissors, argMoveId, argPlayerMove, argComputerMove, argButtonName;
+let computerWins = 0, playerWins = 0, computerPoints = 0, playerPoints = 0,
+computerMove, playerMove, randomNumber;
 
  //////////////////////////////////////////////////////////////////////////////
 
-buttonRock = document.getElementById("button-rock");
+const buttonRock = document.getElementById("button-rock");
 buttonRock.addEventListener("click", function(){ buttonClicked("1");});
 
-buttonPaper = document.getElementById("button-paper");
+const buttonPaper = document.getElementById("button-paper");
 buttonPaper.addEventListener("click", function(){ buttonClicked("2");});
 
-buttonScissors = document.getElementById("button-scissors");
+const buttonScissors = document.getElementById("button-scissors");
 buttonScissors.addEventListener("click", function(){ buttonClicked("3");});
 
-buttonReset = document.getElementById("button-reset");
+const buttonReset = document.getElementById("button-reset");
 buttonReset.addEventListener("click", function(){ buttonClicked("reset");});
 
 showScore(playerWins + " : " + computerWins);
